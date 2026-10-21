@@ -1,0 +1,83 @@
+@page { size: A4; margin: 0; }
+
+* { box-sizing: border-box; }
+/*
+border-box意思是让所有的盒子总宽度width就是原值，不加上padding/border，即：
+下面把page的width设为210mm，那就是210
+*/
+
+body {/*body是page外层的，因此body是整页面的效果*/
+  margin: 0; background: #eee; color: #222;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 10.5pt; line-height: 1.6;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;/*告诉浏览器打印时保留背景色和颜色，不要自动省墨水把背景去掉*/
+}
+
+.page {/*page就是一张悬浮于背景上的A4纸*/
+  width: 210mm; min-height: 297mm; 
+  padding: 14mm 16mm;/*实际的页边距，纸内部留白*/
+  margin: 10mm auto; background: #fff;/*上下外边距 10mm，左右 auto 表示自动居中*/
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);/*加一点阴影，让白纸在灰色背景上浮起来，像一张纸*/
+}
+
+.header { 
+    display: flex;/*弹性布局，让子元素横向排列*/
+    gap: 14px;/*子元素间距*/
+    align-items: flex-start;/*子元素顶部对齐,因为照片一般更高*/
+}
+
+.header img {
+    width: 28mm; height: 36mm;
+    object-fit: cover;/*照片按比例填满这个框，多余部分裁掉，不会变形*/
+    flex-shrink: 0;/*在 flex 布局里不允许照片被压缩*/
+}
+
+.name { font-size: 20pt; margin: 0 0 4px; }
+
+.meta { margin: 0; color: #555; font-size: 9.5pt; }
+
+
+section { margin-top: 14px; break-inside: avoid; }
+
+h2 {
+    font-size: 12pt;
+    margin: 0 0 6px;
+    padding-bottom: 3px;
+    border-bottom: 1.5px solid #222;/*底部加一条 1.5px 深色实线，形成标题下划线效果*/
+}
+
+.item { margin-bottom: 10px; break-inside: avoid; }
+.item-head { display: flex; justify-content: space-between; gap: 8px; }/*项目标题和日期那一行用 flex 布局,justify-content让中间自动撑开*/
+.item-title { font-weight: 600; }
+.item-date { color: #666; font-size: 9.5pt; white-space: nowrap;/*表示日期不许换行*/ }
+
+ul { margin: 4px 0 0; padding-left: 18px; }
+li { margin: 2px 0; }
+
+.skills p { margin: 3px 0; }
+.skills b {
+    display: inline-block;/*几个标签后面的内容能左对齐，看起来整齐*/
+    min-width: 72px;
+}
+
+.edu p {
+    margin: 2px 0;
+}
+.eduexp {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+.edu-title {
+    font-weight: 600;
+}
+.edu-date {
+    color: #666;
+    font-size: 9.5pt;
+    white-space: nowrap;
+}
+
+@media print {/*@media print 里的样式只在打印时生效。*/
+  body { background: #fff; }
+  .page { margin: 0; box-shadow: none; }
+}
