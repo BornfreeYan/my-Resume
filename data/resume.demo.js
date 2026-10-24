@@ -3,5 +3,8 @@ window.DEMO_RESUME = {
     phone: "**********",
     email: "*********@qq.com",
     photo: "./asset/Curry.jpg",
-    edu: "戴维森学院 | 电子信息工程 | 本科 "
+    edu: "戴维森学院 | 篮球 | 本科 ",
+    intro: "NBA player",
+    age: 39,
+    github: "https://github.com/",
   };

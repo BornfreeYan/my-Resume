@@ -9,8 +9,14 @@ const nameEl = document.querySelector(".name");
 // 所以就算数据里混进 <script> 也只会原样显示，比 innerHTML 安全
 nameEl.textContent = data.name;
 
-document.querySelector(".meta").textContent =
-  "手机: " + data.phone + " | 邮箱: " + data.email;
+document.querySelector(".intro").textContent = data.intro;
+document.querySelector("#meta-age").textContent = data.age+"岁";
+document.querySelector("#meta-phone").textContent = data.phone;
+document.querySelector("#meta-email").textContent = data.email;
+
+const githubEl = document.querySelector("#meta-github");
+githubEl.textContent = data.github.replace("https://", "");
+githubEl.href = data.github;
 
 document.querySelector(".header img").src = data.photo;
 
