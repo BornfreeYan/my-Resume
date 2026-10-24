@@ -35,6 +35,26 @@
             <img src = "./asset/Curry.jpg" alt = "照片">
         </header>
 
+        <section class = "edu">   
+            <h2>
+                <svg class="sec-icon" viewBox="0 0 24 24">
+                    <path d="M2 9l10-5 10 5-10 5L2 9z"/>
+                    <path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/>
+                  </svg>
+                教育经历
+            </h2>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title" id="edu-school"></span>
+                    <span class="item-sub" id="edu-major"></span>
+                    <span class="item-date">2023.09 - 2027.06</span>
+                </div>
+                <p><b>绩点</b>: 2.81 / 4.0</p>
+                <p><b>英语</b>: CET-4 603 · CET-6 522</p>
+                <p><b>专业课成绩</b>: 程序设计创新实践88、数据结构与算法课程设计85、嵌入式系统设计91、数字信号处理课程设计83</p>
+            </div>
+        </section>
+
         <section>   
             <h2>
                 <svg class="sec-icon" viewBox="0 0 24 24">
@@ -44,8 +64,9 @@
             </h2>
             <div class="item">
                 <div class="item-head">
-                  <span class="item-title">Morrow</span>
-                  <span class="item-date">2026.10 - 2026.12</span>
+                    <span class="item-title">Morrow</span>
+                    <span class="item-sub">全栈开发</span>
+                    <span class="item-date">2026.10 - 2026.12</span>
                 </div>
                 <ul>
                   <li>xxx</li>
@@ -62,27 +83,41 @@
                   </svg>
                 技术栈与技能
             </h2>
-            <p><b>前端</b>: 熟悉 HTML/CSS/JavaScript</p>
-            <p><b>后端</b>: 熟悉 Python/Fastapi/Mysql</p>
-            <p><b>AI 使用</b>: 主要使用Cursor+Claudecode，vibecoding过两个产品(Webdesk和Obsidian task calendar)</p>
-            <p><b>Agent开发</b>: 熟悉LLM调用、RAG原理</p>
-        </section>
-
-        <section class = "edu">   
-            <h2>
-                <svg class="sec-icon" viewBox="0 0 24 24">
-                    <path d="M2 9l10-5 10 5-10 5L2 9z"/>
-                    <path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/>
-                  </svg>
-                教育经历
-            </h2>
-            <div class = "eduexp">
-                <span class = "edu-title"></span>
-                <span class = "edu-date"> 2023.09-2027.06 </span>
+            <div class="skill-row">
+                <span class="skill-label">前端</span>
+                <ul class="chips">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
             </div>
-            <p><b>绩点</b>: 2.81 / 4.0</p>
-            <p><b>专业课成绩</b>: 程序设计创新实践88、数据结构与算法课程设计85、嵌入式系统设计91、数字信号处理课程设计83</p>
+
+            <div class="skill-row">
+                <span class="skill-label">后端</span>
+                <ul class="chips">
+                    <li>Python</li>
+                    <li>FastAPI</li>
+                    <li>MySQL</li>
+                </ul>
+            </div>
+
+            <div class="skill-row">
+                <span class="skill-label">Agent</span>
+                <ul class="chips">
+                    <li>LLM 调用</li>
+                    <li>RAG</li>
+                </ul>
+            </div>
+
+            <div class="skill-row">
+                <span class="skill-label">工具</span>
+                <ul class="chips">
+                    <li>Cursor</li>
+                    <li>Claude Code</li>
+                </ul>
+            </div>
         </section>
+        
     </div>
 
     <script src="./data/resume.demo.js"></script>

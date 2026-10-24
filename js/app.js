@@ -20,4 +20,5 @@ githubEl.href = data.github;
 
 document.querySelector(".header img").src = data.photo;
 
-document.querySelector(".edu-title").textContent = data.edu;
+document.querySelector("#edu-school").textContent = data.school;
+document.querySelector("#edu-major").textContent = data.major;

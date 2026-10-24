@@ -10,6 +10,7 @@ CSS 变量（自定义属性）就是给一个值起名字，之后到处引用
     --line: #d8dee6;/*分割线*/
     --paper: #ffffff;/*纸张底色*/
     --bg: #e9edf2; /*页面背景（纸张外面的部分）*/
+    --gap-xs: 1.5mm;/*元素内部的小间距：文字段之间、标签之间*/
     --gap-sm: 2.5mm;/*小间距，条目之间*/
     --gap: 4mm;/*常规间距，区块之间*/
     --gap-lg: 8mm;/*大间距，后续用来做区块分隔*/
@@ -26,7 +27,7 @@ border-box意思是让所有的盒子总宽度width就是原值，不加上paddi
 body {/*body是page外层的，因此body是整页面的效果*/
   margin: 0; background: var(--bg); color: var(--text);
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 10.5pt; line-height: 1.6;
+  font-size: 10.5pt; line-height: 1.55;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;/*告诉浏览器打印时保留背景色和颜色，不要自动省墨水把背景去掉*/
 }
 
@@ -63,7 +64,7 @@ body {/*body是page外层的，因此body是整页面的效果*/
 }
 
 .intro {
-    margin: 2px 0 0;/*紧贴姓名下方*/
+    margin: 0.5mm 0 0;/*紧贴姓名下方*/
     color: var(--primary);/*求职意向用主色*/
     font-weight: 600;
     font-size: 11pt;
@@ -83,7 +84,7 @@ body {/*body是page外层的，因此body是整页面的效果*/
 
 .meta-grid li {
     display: flex;/*每一项内部横向排：标签在左、值在右*/
-    gap: 6px;
+    gap: var(--gap-xs);
 }
 
 .meta-label {
@@ -104,10 +105,10 @@ h2 {
     gap: 6px;/*图标和文字之间留 6px*/
     font-size: 12pt;
     margin: 0 0 var(--gap-sm);
-    padding: 3px 8px;/*标题文字与浅蓝底之间的留白*/
+    padding: 1mm 2.5mm;/*标题文字与浅蓝底之间的留白*/
     background: var(--primary-soft);/*整条标题的浅蓝底色*/
     border-left: 4px solid var(--primary);/*左侧 4px 深蓝竖条*/
-    border-radius: 2px;/*轻微圆角，不那么生硬*/
+    border-radius: 5px;/*轻微圆角，不那么生硬*/
     color: var(--primary);/*标题文字用主色*/
 }
 
@@ -123,37 +124,76 @@ h2 {
 }
 
 .item { margin-bottom: var(--gap-sm); break-inside: avoid; }
-.item-head { display: flex; justify-content: space-between; gap: 8px; }/*项目标题和日期那一行用 flex 布局,justify-content让中间自动撑开*/
+
+/* 条目头：标题 / 补充说明 / 日期，三段排一行 */
+.item-head {
+    display: flex;
+    align-items: baseline;/*三段字号不同，按文字基线对齐最自然*/
+    gap: var(--gap-xs);
+}
 .item-title { font-weight: 600; }
-.item-date { color: var(--muted); font-size: 9.5pt; white-space: nowrap;/*表示日期不许换行*/ }
+.item-sub {
+    flex: 1;/*吃掉标题与日期之间的剩余空间，自己变成一个宽盒子*/
+    text-align: center;/*说明文字在这个宽盒子里居中*/
+    color: var(--muted);
+    font-size: 9.5pt;/*中间的补充说明：专业、职位*/
+}
+.item-date {
+    margin-left: auto;/*吃掉左侧剩余空间，把日期推到最右*/
+    color: var(--muted);
+    font-size: 9.5pt;
+    white-space: nowrap;/*日期不许换行*/
+    flex-shrink: 0;/*空间不够时压中间那段，不压日期*/
+}
 
-ul { margin: 4px 0 0; padding-left: 18px; }
-li { margin: 2px 0; }
+ul { margin: var(--gap-xs) 0 0; padding-left: 5mm; }
+li { margin: 0.6mm 0; }
 
-.skills p { margin: 3px 0; }
-.skills b {
-    display: inline-block;/*几个标签后面的内容能左对齐，看起来整齐*/
-    min-width: 72px;
+/* ---------- 技能标签 ---------- */
+.skill-row {
+    display: flex;/*组名和右侧标签横向排*/
+    align-items: baseline;/*按文字底边对齐，标签第一行和组名坐在同一条线上*/
+    margin: 0.8mm 0;
+    gap: var(--gap-xs);
+}
+
+.skill-label {
+    flex: 0 0 5em;/*组名固定 5 个字宽，四行左边界就能对齐*/
+    font-weight: 600;
+}
+
+.chips {
+    flex: 1;/*占满组名右边的所有宽度*/
+    min-width: 0;/*允许被压缩，标签才能在这一段宽度内换行*/
+    display: flex;
+    flex-wrap: wrap;/*一行放不下就换行，不撑破纸张*/
+    gap: 1.2mm;/*标签之间的间距*/
+    list-style: none;/*去掉 li 的圆点*/
+    margin: 0;/*覆盖全局 ul 的 margin，否则标签块会往下掉*/
+    padding: 0;/*覆盖全局 ul 的左侧缩进*/
+}
+
+.chips li {
+    margin: 0;/*覆盖全局 li 的上下边距*/
+    padding: 1px 7px;/*标签内部的留白*/
+    background: var(--primary-soft);/*浅蓝底*/
+    color: var(--primary);/*深蓝字*/
+    border-radius: 3px;/*小圆角*/
+    font-size: 9pt;/*比正文小半号，视觉上更轻*/
 }
 
 .edu p {
-    margin: 2px 0;
+    margin: 0.6mm 0;
 }
-.eduexp {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-}
-.edu-title {
-    font-weight: 600;
-}
-.edu-date {
-    color: var(--muted);
-    font-size: 9.5pt;
-    white-space: nowrap;
+.edu b {
+    display: inline-block;
+    min-width: 5em;/*「绩点 / 英语 / 专业课成绩」三行冒号对齐*/
 }
 
-@media print {/*@media print 里的样式只在打印时生效。*/
-  body { background: var(--paper); }
-  .page { margin: 0; box-shadow: none; }
-}
+@media print {
+    body { background: var(--paper); }   /* 灰底换成白，省墨 */
+    .page { margin: 0; box-shadow: none; }/* 去掉屏幕上那张纸的阴影和外边距 */
+  
+    h2 { break-after: avoid; }           /* 标题后面紧跟内容，别把标题孤零零留在页底 */
+    a { color: inherit; text-decoration: none; }/* 打印时链接不显示蓝色下划线 */
+  }/*对于打印的备注：边距选"无"、缩放选"默认 100%"*/
