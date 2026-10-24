@@ -99,10 +99,27 @@ body {/*body是page外层的，因此body是整页面的效果*/
 section { margin-top: var(--gap); break-inside: avoid; }
 
 h2 {
+    display: flex;/*图标和标题文字排成一行*/
+    align-items: center;/*图标与文字垂直居中对齐*/
+    gap: 6px;/*图标和文字之间留 6px*/
     font-size: 12pt;
-    margin: 0 0 6px;
-    padding-bottom: 3px;
-    border-bottom: 1.5px solid var(--primary);/*底部加一条 1.5px 深色实线，形成标题下划线效果*/
+    margin: 0 0 var(--gap-sm);
+    padding: 3px 8px;/*标题文字与浅蓝底之间的留白*/
+    background: var(--primary-soft);/*整条标题的浅蓝底色*/
+    border-left: 4px solid var(--primary);/*左侧 4px 深蓝竖条*/
+    border-radius: 2px;/*轻微圆角，不那么生硬*/
+    color: var(--primary);/*标题文字用主色*/
+}
+
+.sec-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;/*图标尺寸固定，不被挤小*/
+    fill: none;/*描边风格：内部不填色*/
+    stroke: currentColor;/*线条颜色跟随当前文字颜色*/
+    stroke-width: 2;/*线条粗细*/
+    stroke-linecap: round;/*线条端点是圆的*/
+    stroke-linejoin: round;/*转弯处是圆的*/
 }
 
 .item { margin-bottom: var(--gap-sm); break-inside: avoid; }
